@@ -12,7 +12,7 @@ The Tab Override jQuery plugin requires jQuery version 1.7.0 or newer and
 version 2.1.0 or newer.
 
 **Important:** The `jquery.taboverride.js` file no longer includes the taboverride
-core dependency. The `taboverride.js` file ([download](https://github.com/wjbryant/taboverride/downloads))
+core dependency. The [taboverride.js file](https://github.com/wjbryant/taboverride/downloads "Download Tab Override")
 must be included in the page before `jquery.taboverride.js`. Alternatively, the
 files may be concatenated together.
 
@@ -32,8 +32,9 @@ This will download the `jquery.taboverride` plugin and all of its dependencies
 ### AMD
 
 This plugin is AMD compatible and can be loaded using a script loader such as
-[RequireJS](http://requirejs.org/). This is convenient since it will automatically
-load the taboverride core dependency for you.
+[RequireJS](http://requirejs.org/). It is defined as a module named
+`jquery.taboverride`. Using a script loader is convenient because dependencies
+will automatically be loaded if they are available.
 
 #### Optimization
 
