@@ -4,6 +4,6 @@
 * Added AMD support
 * Added component.json for Bower support (registered as `jquery.taboverride`)
 * Separated core and jQuery plugin into individual projects
-* jquery.taboverride.js no longer includes the core dependency
+* `jquery.taboverride.js` no longer includes the core dependency
 (see [README](https://github.com/wjbryant/jquery.taboverride/blob/master/README.md#dependencies))
 * Made style changes to better conform with the jQuery Core Style Guidelines
