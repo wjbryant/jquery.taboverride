@@ -12,8 +12,9 @@ The Tab Override jQuery plugin requires jQuery version 1.7.0 or newer and
 version 2.1.0 or newer.
 
 **Important:** The `jquery.taboverride.js` file no longer includes the taboverride
-core dependency. The `taboverride.js` file must be included in the page before
-`jquery.taboverride.js`. Alternatively, the files may be concatenated together.
+core dependency. The `taboverride.js` file ([download](https://github.com/wjbryant/taboverride/downloads))
+must be included in the page before `jquery.taboverride.js`. Alternatively, the
+files may be concatenated together.
 
 ### Bower
 
