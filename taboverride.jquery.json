@@ -1,0 +1,34 @@
+{
+    "name": "taboverride",
+    "version": "2.1.0",
+    "title": "Tab Override",
+    "author": {
+        "name": "Bill Bryant",
+        "url": "http://wjbryant.com/"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/mit"
+        }
+    ],
+    "jquery": {
+        "dependencies": {
+            "jquery": "~1.7",
+            "taboverride-core": "~2.1"
+        },
+        "docs": "http://wjbryant.github.com/jquery.taboverride/",
+        "demo": "http://wjbryant.com/projects/tab-override/"
+    },
+    "description": "Tab Override is a lightweight jQuery plugin that allows tabs to be entered in textarea elements",
+    "keywords": [
+        "indent",
+        "insert",
+        "key",
+        "override",
+        "tab",
+        "tabs",
+        "textarea"
+    ],
+    "homepage": "https://github.com/wjbryant/jquery.taboverride"
+}

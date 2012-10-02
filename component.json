@@ -1,0 +1,9 @@
+{
+    "name": "jquery.taboverride",
+    "version": "2.1.0",
+    "main": "./build/jquery.taboverride.js",
+    "dependencies": {
+        "jquery": "~1.7",
+        "taboverride": "~2.1"
+    }
+}
