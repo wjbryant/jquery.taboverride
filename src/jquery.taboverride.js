@@ -50,7 +50,7 @@
         // to TABOVERRIDE.enable() or TABOVERRIDE.disable().
         // If there are no arguments or enable is truthy, enable Tab Override,
         // otherwise, disable it.
-        TABOVERRIDE.set(this, !arguments.length || enable);
+        TABOVERRIDE.set( this, !arguments.length || enable );
 
         // Return the jQuery object
         return this;
