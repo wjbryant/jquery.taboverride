@@ -1,26 +1,15 @@
-/*global require */
+/*global jQuery */
 
-require.config({
-    baseUrl: '.',
-    // the modules are in different directories
-    paths: {
-        'jquery': 'lib/jquery-1.8.2.min',
-        'taboverride': 'lib/taboverride-3.1.0.min',
-        'jquery.taboverride': '../build/jquery.taboverride.min'
-    }
-});
-
-// this code uses jQuery and the Tab Override jQuery plugin
-require(['jquery', 'jquery.taboverride'], function ($) {
+jQuery(function ($) {
     'use strict';
 
-    // get a reference to the textarea we want to enhance
-    var $textarea = $('#txt');
+    // get a reference to the container element
+    var $container = $('body');
 
     // toggle Tab Override when the checkbox value changes
     $('#tab_override_enabled')
         .change(function () {
-            $textarea.tabOverride(this.checked);
+            $container.tabOverride(this.checked, 'textarea');
         })
         .change(); // initialize
 
@@ -37,4 +26,9 @@ require(['jquery', 'jquery.taboverride'], function ($) {
             $.fn.tabOverride.autoIndent(this.checked);
         })
         .change(); // initialize
+
+    // add a new textarea element to the page when the "add" button is clicked
+    $('#add_textarea').click(function () {
+        $container.append($('<textarea>'));
+    });
 });

@@ -10,7 +10,7 @@ documentation is available at
 The latest version of the plugin requires:
 
 * [jQuery](http://jquery.com/) v1.7.0+
-* [Tab Override](https://github.com/wjbryant/taboverride) v3.0.0+
+* [Tab Override](https://github.com/wjbryant/taboverride) v3.1.0+
 
 **Important:** The `jquery.taboverride.js` file no longer includes the taboverride
 core dependency. The [`taboverride.js`](https://github.com/wjbryant/taboverride/downloads "Download Tab Override")
@@ -70,6 +70,24 @@ $('textarea').tabOverride(true);
 ```javascript
 // disable Tab Override using any falsy argument
 $('textarea').tabOverride(false);
+```
+
+#### Delegated Events
+
+The jQuery plugin also supports delegated events. Simply specify a selector
+string as the second argument:
+
+```javascript
+// enable Tab Override for all textareas on the page,
+// including textareas that are dynamically generated
+$(document).tabOverride(true, 'textarea');
+```
+
+The plugin can then be disabled using the same syntax:
+
+```javascript
+// disable Tab Override
+$(document).tabOverride(false, 'textarea');
 ```
 
 ### Get/Set Tab Size

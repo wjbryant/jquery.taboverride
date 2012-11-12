@@ -1,5 +1,9 @@
 # Tab Override jQuery Plugin Changelog
 
+## 3.1.0 (2012-11-12)
+* Added event delegation support
+* Added an example for delegated events
+
 ## 3.0.0 (2012-10-12)
 * Removed `getTabSize()` and `setTabSize()` - use `tabSize()` instead
 * Updated the `tabOverride()` method for Tab Override v3.0.0 compatibility

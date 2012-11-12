@@ -1,10 +1,10 @@
-/*! jquery.taboverride v3.0.0 | https://github.com/wjbryant/jquery.taboverride
+/*! jquery.taboverride v3.1.0 | https://github.com/wjbryant/jquery.taboverride
 Copyright (c) 2012 Bill Bryant | http://opensource.org/licenses/mit */
 
 /**
  * @fileOverview Tab Override jQuery plugin
  * @author       Bill Bryant
- * @version      3.0.0
+ * @version      3.1.0
  */
 
 /*jslint white: true */
@@ -46,6 +46,7 @@ Copyright (c) 2012 Bill Bryant | http://opensource.org/licenses/mit */
      *
      * @param  {Boolean} [enable=true]  whether Tab Override should be enabled
      *                                  for the element(s)
+     * @param  {String}  [selector]     the selector string for delegated events
      * @return {Object}                 the jQuery object
      *
      * @name tabOverride
@@ -53,13 +54,25 @@ Copyright (c) 2012 Bill Bryant | http://opensource.org/licenses/mit */
      * @function
      * @namespace
      */
-    var tabOverride = $.fn.tabOverride = function ( enable ) {
+    var tabOverride = $.fn.tabOverride = function ( enable, selector ) {
 
-        // The jQuery object acts as an array of elements, so it can be passed
-        // to TABOVERRIDE.enable() or TABOVERRIDE.disable().
-        // If there are no arguments or enable is truthy, enable Tab Override,
-        // otherwise, disable it.
-        TABOVERRIDE.set( this, !arguments.length || enable );
+        var enablePlugin = !arguments.length || enable,
+            isDelegated = typeof selector === "string";
+
+        if ( isDelegated ) {
+            // Always remove the event handlers
+            this.off( ".tabOverride", selector );
+
+            if ( enablePlugin ) {
+                this
+                    .on( "keydown.tabOverride", selector, TABOVERRIDE.overrideKeyDown )
+                    .on( "keypress.tabOverride", selector, TABOVERRIDE.overrideKeyPress );
+            }
+        } else {
+            // The jQuery object acts as an array of elements, so it can be passed
+            // to TABOVERRIDE.set()
+            TABOVERRIDE.set( this, enablePlugin );
+        }
 
         // Return the jQuery object
         return this;
