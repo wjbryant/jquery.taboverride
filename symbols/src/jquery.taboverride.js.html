@@ -5,13 +5,13 @@
 	.STRN {color: #393;}
 	.REGX {color: #339;}
 	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
-	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/*! jquery.taboverride v3.1.0 | https://github.com/wjbryant/jquery.taboverride
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/*! jquery.taboverride v3.2.0 | https://github.com/wjbryant/jquery.taboverride
 <span class='line'>  2</span> Copyright (c) 2012 Bill Bryant | http://opensource.org/licenses/mit */</span><span class="WHIT">
 <span class='line'>  3</span> 
 <span class='line'>  4</span> </span><span class="COMM">/**
 <span class='line'>  5</span>  * @fileOverview Tab Override jQuery plugin
 <span class='line'>  6</span>  * @author       Bill Bryant
-<span class='line'>  7</span>  * @version      3.1.0
+<span class='line'>  7</span>  * @version      3.2.0
 <span class='line'>  8</span>  */</span><span class="WHIT">
 <span class='line'>  9</span> 
 <span class='line'> 10</span> </span><span class="COMM">/*jslint white: true */</span><span class="WHIT">
@@ -111,5 +111,35 @@
 <span class='line'>104</span>      * @memberOf jQuery.fn.tabOverride
 <span class='line'>105</span>      */</span><span class="WHIT">
 <span class='line'>106</span> </span><span class="WHIT">    </span><span class="NAME">tabOverride.autoIndent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">TABOVERRIDE.autoIndent</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>107</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>108</span> </span></pre></body></html>
+<span class='line'>107</span> 
+<span class='line'>108</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'>109</span>      * Gets or sets the tab key combination.
+<span class='line'>110</span>      *
+<span class='line'>111</span>      * @param  {Number}        keyCode             the key code of the key to use for tab
+<span class='line'>112</span>      * @param  {String[]}      [modifierKeyNames]  the modifier key names - valid names are
+<span class='line'>113</span>      *                                             'alt', 'ctrl', 'meta', and 'shift'
+<span class='line'>114</span>      * @return {String|Function}                   the current tab key combination or the
+<span class='line'>115</span>      *                                             tabOverride function
+<span class='line'>116</span>      *
+<span class='line'>117</span>      * @name tabKey
+<span class='line'>118</span>      * @function
+<span class='line'>119</span>      * @memberOf jQuery.fn.tabOverride
+<span class='line'>120</span>      */</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">    </span><span class="NAME">tabOverride.tabKey</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">TABOVERRIDE.tabKey</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>122</span> 
+<span class='line'>123</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'>124</span>      * Gets or sets the untab key combination.
+<span class='line'>125</span>      *
+<span class='line'>126</span>      * @param  {Number}        keyCode             the key code of the key to use for untab
+<span class='line'>127</span>      * @param  {String[]}      [modifierKeyNames]  the modifier key names - valid names are
+<span class='line'>128</span>      *                                             'alt', 'ctrl', 'meta', and 'shift'
+<span class='line'>129</span>      * @return {String|Function}                   the current untab key combination or the
+<span class='line'>130</span>      *                                             tabOverride function
+<span class='line'>131</span>      *
+<span class='line'>132</span>      * @name untabKey
+<span class='line'>133</span>      * @function
+<span class='line'>134</span>      * @memberOf jQuery.fn.tabOverride
+<span class='line'>135</span>      */</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="WHIT">    </span><span class="NAME">tabOverride.untabKey</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">TABOVERRIDE.untabKey</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>138</span> </span></pre></body></html>
