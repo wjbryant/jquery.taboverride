@@ -10,10 +10,10 @@ documentation is available at
 The latest version of the plugin requires:
 
 * [jQuery](http://jquery.com/) v1.7.0+
-* [Tab Override](https://github.com/wjbryant/taboverride) v3.1.0+
+* [Tab Override](https://github.com/wjbryant/taboverride) v3.2.0+
 
 **Important:** The `jquery.taboverride.js` file no longer includes the taboverride
-core dependency. The [`taboverride.js`](https://github.com/wjbryant/taboverride/downloads "Download Tab Override")
+core dependency. The [`taboverride.js` or `taboverride.min.js`](https://github.com/wjbryant/taboverride/tree/master/build)
 file must be included in the page before `jquery.taboverride.js`. Alternatively,
 the files may be concatenated together.
 
@@ -118,6 +118,43 @@ $.fn.tabOverride.autoIndent(true);
 
 // disable auto indent (default)
 $.fn.tabOverride.autoIndent(false);
+```
+
+### Get/Set Key Combinations
+
+```javascript
+// get the current tab key combination
+var tabKeyCombo = $.fn.tabOverride.tabKey();
+
+// get the current untab key combination
+var untabKeyCombo = $.fn.tabOverride.untabKey();
+```
+
+The key combinations used for tabbing and untabbing can be customized. If
+accessibility is a concern, it is recommended to set key combinations that are
+not mapped to any action by default.
+
+Setting the key combinations is done by calling the `tabKey()` or `untabKey()`
+methods with parameters. The first parameter is the key code (`Number`) of the
+key. The second parameter is optional and specifies modifier keys (`alt`, `ctrl`,
+`meta`, `shift`) as an array of strings.
+
+```javascript
+// set the tab key combination to ctrl+]
+// and the untab key combination to ctrl+[
+$.fn.tabOverride
+    .tabKey(221, ['ctrl'])
+    .untabKey(219, ['ctrl']);
+```
+
+The default tab key combination is: `Tab`. The default untab key combination is:
+`Shift + Tab`. These combinations can be set like this:
+
+```javascript
+// reset the default key combinations
+$.fn.tabOverride
+    .tabKey(9)
+    .untabKey(9, ['shift']);
 ```
 
 ### Additional Notes

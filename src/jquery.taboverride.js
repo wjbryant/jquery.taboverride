@@ -95,4 +95,34 @@
      * @memberOf jQuery.fn.tabOverride
      */
     tabOverride.autoIndent = TABOVERRIDE.autoIndent;
+
+    /**
+     * Gets or sets the tab key combination.
+     *
+     * @param  {Number}        keyCode             the key code of the key to use for tab
+     * @param  {String[]}      [modifierKeyNames]  the modifier key names - valid names are
+     *                                             'alt', 'ctrl', 'meta', and 'shift'
+     * @return {String|Function}                   the current tab key combination or the
+     *                                             tabOverride function
+     *
+     * @name tabKey
+     * @function
+     * @memberOf jQuery.fn.tabOverride
+     */
+    tabOverride.tabKey = TABOVERRIDE.tabKey;
+
+    /**
+     * Gets or sets the untab key combination.
+     *
+     * @param  {Number}        keyCode             the key code of the key to use for untab
+     * @param  {String[]}      [modifierKeyNames]  the modifier key names - valid names are
+     *                                             'alt', 'ctrl', 'meta', and 'shift'
+     * @return {String|Function}                   the current untab key combination or the
+     *                                             tabOverride function
+     *
+     * @name untabKey
+     * @function
+     * @memberOf jQuery.fn.tabOverride
+     */
+    tabOverride.untabKey = TABOVERRIDE.untabKey;
 }));

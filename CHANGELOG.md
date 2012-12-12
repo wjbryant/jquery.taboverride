@@ -1,5 +1,8 @@
 # Tab Override jQuery Plugin Changelog
 
+## 3.2.0 (2012-12-12)
+* Added `tabKey()` and `untabKey()`
+
 ## 3.1.0 (2012-11-12)
 * Added event delegation support
 * Added an example for delegated events

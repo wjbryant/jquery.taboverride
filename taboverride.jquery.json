@@ -1,6 +1,6 @@
 {
     "name": "taboverride",
-    "version": "3.1.0",
+    "version": "3.2.0",
     "title": "Tab Override",
     "author": {
         "name": "Bill Bryant",
@@ -15,7 +15,7 @@
     "jquery": {
         "dependencies": {
             "jquery": "~1.7",
-            "taboverride-core": "~3.1"
+            "taboverride-core": "~3.2"
         },
         "docs": "http://wjbryant.github.com/jquery.taboverride/",
         "demo": "http://wjbryant.com/projects/tab-override/"

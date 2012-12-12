@@ -1,10 +1,10 @@
-/*! jquery.taboverride v3.1.0 | https://github.com/wjbryant/jquery.taboverride
+/*! jquery.taboverride v3.2.0 | https://github.com/wjbryant/jquery.taboverride
 Copyright (c) 2012 Bill Bryant | http://opensource.org/licenses/mit */
 
 /**
  * @fileOverview Tab Override jQuery plugin
  * @author       Bill Bryant
- * @version      3.1.0
+ * @version      3.2.0
  */
 
 /*jslint white: true */
@@ -104,4 +104,34 @@ Copyright (c) 2012 Bill Bryant | http://opensource.org/licenses/mit */
      * @memberOf jQuery.fn.tabOverride
      */
     tabOverride.autoIndent = TABOVERRIDE.autoIndent;
+
+    /**
+     * Gets or sets the tab key combination.
+     *
+     * @param  {Number}        keyCode             the key code of the key to use for tab
+     * @param  {String[]}      [modifierKeyNames]  the modifier key names - valid names are
+     *                                             'alt', 'ctrl', 'meta', and 'shift'
+     * @return {String|Function}                   the current tab key combination or the
+     *                                             tabOverride function
+     *
+     * @name tabKey
+     * @function
+     * @memberOf jQuery.fn.tabOverride
+     */
+    tabOverride.tabKey = TABOVERRIDE.tabKey;
+
+    /**
+     * Gets or sets the untab key combination.
+     *
+     * @param  {Number}        keyCode             the key code of the key to use for untab
+     * @param  {String[]}      [modifierKeyNames]  the modifier key names - valid names are
+     *                                             'alt', 'ctrl', 'meta', and 'shift'
+     * @return {String|Function}                   the current untab key combination or the
+     *                                             tabOverride function
+     *
+     * @name untabKey
+     * @function
+     * @memberOf jQuery.fn.tabOverride
+     */
+    tabOverride.untabKey = TABOVERRIDE.untabKey;
 }));
