@@ -1,6 +1,6 @@
 {
     "name": "taboverride",
-    "version": "3.2.0",
+    "version": "3.2.1-pre",
     "title": "Tab Override",
     "author": {
         "name": "Bill Bryant",
@@ -18,7 +18,7 @@
             "taboverride-core": "~3.2"
         },
         "docs": "http://wjbryant.github.com/jquery.taboverride/",
-        "demo": "http://wjbryant.com/projects/tab-override/"
+        "demo": "http://wjbryant.github.com/taboverride/"
     },
     "description": "Tab Override is a lightweight jQuery plugin that allows tabs to be entered in textarea elements",
     "keywords": [

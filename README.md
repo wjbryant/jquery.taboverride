@@ -34,16 +34,14 @@ into a `components` directory in your project.
 
 This plugin is [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) compatible and
 can be loaded using a script loader such as [RequireJS](http://requirejs.org/).
-It is defined as a module named `jquery.taboverride`. The script loader will
-automatically load all available dependencies when `jquery.taboverride` is
-required.
+The script loader will automatically load all available dependencies when
+`jquery.taboverride` is required.
 
 #### Optimization
 
-The plugin is defined as a named module to allow for easy concatenation with the
-`taboverride` core module. Using the RequireJS optimization tool,
-[r.js](https://github.com/jrburke/r.js), is not strictly necessary in this case,
-but may still be used like so:
+To safely concatenate the plugin with the `taboverride` core module, it is
+recommended to use the RequireJS optimization tool,
+[r.js](https://github.com/jrburke/r.js), like so:
 
 ```
 r.js -o name=jquery.taboverride out=jquery.taboverride.combined.min.js paths.jquery=empty:

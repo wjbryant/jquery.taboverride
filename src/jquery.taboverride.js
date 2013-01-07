@@ -22,9 +22,9 @@
     "use strict";
 
     if ( typeof define === "function" && define.amd ) {
-        // AMD - Register as a named module
-        // Using a named module allows for non-AMD-aware concatenation
-        define( "jquery.taboverride", [ "jquery", "taboverride" ], factory );
+        // AMD - Register as an anonymous module
+        // Files must be concatenated using an AMD-aware tool such as r.js
+        define( [ "jquery", "taboverride" ], factory );
     } else {
         // No AMD - Use global variables instead
         factory( jQuery, TABOVERRIDE );
