@@ -1,10 +1,10 @@
-/*! jquery.taboverride v3.2.0 | https://github.com/wjbryant/jquery.taboverride
-Copyright (c) 2012 Bill Bryant | http://opensource.org/licenses/mit */
+/*! jquery.taboverride v3.2.1-pre | https://github.com/wjbryant/jquery.taboverride
+Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 
 /**
  * @fileOverview Tab Override jQuery plugin
  * @author       Bill Bryant
- * @version      3.2.0
+ * @version      3.2.1-pre
  */
 
 /*jslint white: true */
@@ -31,9 +31,9 @@ Copyright (c) 2012 Bill Bryant | http://opensource.org/licenses/mit */
     "use strict";
 
     if ( typeof define === "function" && define.amd ) {
-        // AMD - Register as a named module
-        // Using a named module allows for non-AMD-aware concatenation
-        define( "jquery.taboverride", [ "jquery", "taboverride" ], factory );
+        // AMD - Register as an anonymous module
+        // Files must be concatenated using an AMD-aware tool such as r.js
+        define( [ "jquery", "taboverride" ], factory );
     } else {
         // No AMD - Use global variables instead
         factory( jQuery, TABOVERRIDE );

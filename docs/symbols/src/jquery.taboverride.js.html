@@ -5,13 +5,13 @@
 	.STRN {color: #393;}
 	.REGX {color: #339;}
 	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
-	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/*! jquery.taboverride v3.2.0 | https://github.com/wjbryant/jquery.taboverride
-<span class='line'>  2</span> Copyright (c) 2012 Bill Bryant | http://opensource.org/licenses/mit */</span><span class="WHIT">
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">/*! jquery.taboverride v3.2.1-pre | https://github.com/wjbryant/jquery.taboverride
+<span class='line'>  2</span> Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */</span><span class="WHIT">
 <span class='line'>  3</span> 
 <span class='line'>  4</span> </span><span class="COMM">/**
 <span class='line'>  5</span>  * @fileOverview Tab Override jQuery plugin
 <span class='line'>  6</span>  * @author       Bill Bryant
-<span class='line'>  7</span>  * @version      3.2.0
+<span class='line'>  7</span>  * @version      3.2.1-pre
 <span class='line'>  8</span>  */</span><span class="WHIT">
 <span class='line'>  9</span> 
 <span class='line'> 10</span> </span><span class="COMM">/*jslint white: true */</span><span class="WHIT">
@@ -38,9 +38,9 @@
 <span class='line'> 31</span> </span><span class="WHIT">    </span><span class="STRN">"use strict"</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 32</span> 
 <span class='line'> 33</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="WHIT"> </span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">define</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">"function"</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">define.amd</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 34</span> </span><span class="WHIT">        </span><span class="COMM">// AMD - Register as a named module</span><span class="WHIT">
-<span class='line'> 35</span> </span><span class="WHIT">        </span><span class="COMM">// Using a named module allows for non-AMD-aware concatenation</span><span class="WHIT">
-<span class='line'> 36</span> </span><span class="WHIT">        </span><span class="NAME">define</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="STRN">"jquery.taboverride"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="STRN">"jquery"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"taboverride"</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">factory</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">        </span><span class="COMM">// AMD - Register as an anonymous module</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">        </span><span class="COMM">// Files must be concatenated using an AMD-aware tool such as r.js</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">        </span><span class="NAME">define</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="STRN">"jquery"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"taboverride"</span><span class="WHIT"> </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">factory</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 37</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 38</span> </span><span class="WHIT">        </span><span class="COMM">// No AMD - Use global variables instead</span><span class="WHIT">
 <span class='line'> 39</span> </span><span class="WHIT">        </span><span class="NAME">factory</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">jQuery</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">TABOVERRIDE</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
