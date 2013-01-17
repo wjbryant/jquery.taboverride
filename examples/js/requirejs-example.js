@@ -4,8 +4,8 @@ require.config({
     baseUrl: '.',
     // the modules are in different directories
     paths: {
-        'jquery': 'lib/jquery-1.8.3.min',
-        'taboverride': 'lib/taboverride-3.2.0.min',
+        'jquery': 'lib/jquery-1.9.0.min',
+        'taboverride': 'lib/taboverride-3.2.1.min',
         'jquery.taboverride': '../build/jquery.taboverride.min'
     }
 });
