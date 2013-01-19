@@ -15,8 +15,8 @@ module.exports = function (grunt) {
                 '    "version": "<%= pkg.version %>",\r\n' +
                 '    "main": "./build/jquery.taboverride.js",\r\n' +
                 '    "dependencies": {\r\n' +
-                '        "jquery": "<%= pkg.jquery.dependencies.jquery %>",\r\n' +
-                '        "taboverride": "<%= pkg.jquery.dependencies[\'taboverride-core\'] %>"\r\n' +
+                '        "jquery": "<%= pkg.dependencies.jquery %>",\r\n' +
+                '        "taboverride": "<%= pkg.dependencies[\'taboverride-core\'] %>"\r\n' +
                 '    }\r\n' +
                 '}'
         },
