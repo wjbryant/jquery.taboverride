@@ -1,7 +1,10 @@
 # Tab Override jQuery Plugin Changelog
 
+## 3.2.3 (2012-01-21)
+* Improved description and dependencies in manifest file
+
 ## 3.2.2 (2012-01-19)
-* Update manifest file and register on plugins.jquery.com
+* Updated manifest file and registered on plugins.jquery.com
 
 ## 3.2.1 (2012-01-17)
 * Register as an anonymous AMD module instead of a named one
