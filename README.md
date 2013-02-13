@@ -15,7 +15,7 @@ The latest version of the plugin requires:
 **Important:** The `jquery.taboverride.js` file no longer includes the taboverride
 core dependency. The [`taboverride.js` or `taboverride.min.js`](https://github.com/wjbryant/jquery.taboverride/tags)
 file must be included in the page before `jquery.taboverride.js`. Alternatively,
-the files may be concatenated together (see [Optimization](https://github.com/wjbryant/jquery.taboverride/#optimization) below).
+the files may be concatenated together (see [Optimization](#optimization) below).
 
 ### Bower
 
