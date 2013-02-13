@@ -1,5 +1,5 @@
 {
-    "name": "taboverride",
+    "name": "jquery.taboverride",
     "version": "3.2.4-dev",
     "author": {
         "name": "Bill Bryant",
@@ -11,6 +11,10 @@
             "url": "http://opensource.org/licenses/mit"
         }
     ],
+    "libDependencies": {
+        "jquery": ">=1.7.0 <2.0.0",
+        "taboverride": ">=3.2.0 <4.0.0"
+    },
     "description": "Allows tabs to be entered in textarea elements. This plugin is a wrapper for the Tab Override library API.",
     "keywords": [
         "indent",
@@ -23,11 +27,10 @@
     ],
     "homepage": "https://github.com/wjbryant/jquery.taboverride",
     "bugs": "https://github.com/wjbryant/jquery.taboverride/issues",
-    "title": "Tab Override",
-    "docs": "https://github.com/wjbryant/jquery.taboverride",
-    "demo": "http://wjbryant.github.com/taboverride/",
-    "dependencies": {
-        "jquery": ">=1.7.0 <2.0.0",
-        "taboverride-lib": ">=3.2.0 <4.0.0"
+    "devDependencies": {
+        "grunt": "0.4.0rc7",
+        "grunt-contrib-jshint": "0.1.1rc6",
+        "grunt-contrib-concat": "0.1.2rc6",
+        "grunt-contrib-uglify": "0.1.1rc6"
     }
 }
