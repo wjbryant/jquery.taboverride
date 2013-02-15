@@ -1,10 +1,23 @@
-/*jslint node: true */
+/*jshint es5: true, node: true */
 
 module.exports = function (grunt) {
+    'use strict';
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
-            all: ['src/jquery.taboverride.js']
+            options: {
+                jshintrc: '.jshintrc'
+            },
+            all: [
+                'Gruntfile.js',
+                'src/jquery.taboverride.js',
+                'examples/js/*.js'
+            ]
+        },
+        clean: {
+            build: ['build'],
+            docs: ['docs']
         },
         concat: {
             dist: {
@@ -36,6 +49,7 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
@@ -86,7 +100,38 @@ module.exports = function (grunt) {
         grunt.file.write('bower.json', contents);
     });
 
-    // need to a create custom task for jsdoc-toolkit documentation
+    grunt.registerTask('generateAPIDocs', 'Generates API documentation using JSDoc 3.', function () {
+        grunt.task.requires(['concat']);
 
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'generateJQueryManifest', 'generateBowerManifest']);
+        var done = this.async(),
+            jsdoc = 'node_modules/jsdoc/jsdoc',
+            cmd = jsdoc,
+            args = [];
+
+        // work around for https://github.com/joyent/node/issues/2318
+        if (process.platform === 'win32') {
+            cmd = 'cmd';
+            args.push('/c', jsdoc.replace(/\//g, '\\'));
+        }
+
+        args.push('-d', 'docs', 'build/jquery.taboverride.js');
+
+        grunt.util.spawn(
+            {
+                cmd: cmd,
+                args: args
+            },
+            function (error, result) {
+                if (error) {
+                    grunt.log.error(result.toString());
+                }
+                done(!error);
+            }
+        );
+    });
+
+    grunt.registerTask('default', [
+        'jshint', 'clean:build', 'concat', 'uglify', 'generateJQueryManifest',
+        'generateBowerManifest', 'clean:docs', 'generateAPIDocs'
+    ]);
 };

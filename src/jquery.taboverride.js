@@ -1,5 +1,3 @@
-/*jslint white: true */
-/*jshint white: false */
 /*global define, jQuery, TABOVERRIDE */
 
 /**

@@ -1,5 +1,10 @@
 # Tab Override jQuery Plugin Changelog
 
+## Dev
+* Updated build process
+  * Use JSHint for all js files
+  * Generate API documentation with JSDoc 3
+
 ## 3.2.3 (2012-01-21)
 * Improved description and dependencies in manifest file
 
