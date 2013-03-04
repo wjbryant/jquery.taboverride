@@ -7,7 +7,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
  * @version      3.2.4-dev
  */
 
-/*global define, jQuery, TABOVERRIDE */
+/*global exports, require, define, jQuery, TABOVERRIDE */
 
 /**
  * the global jQuery object
@@ -24,17 +24,20 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
  * @memberOf jQuery
  */
 
-// Use AMD if available
+// Use CommonJS or AMD if available
 (function ( factory ) {
     "use strict";
 
-    if ( typeof define === "function" && define.amd ) {
-        // AMD - Register as an anonymous module
-        // Files must be concatenated using an AMD-aware tool such as r.js
-        define( [ "jquery", "taboverride" ], factory );
+    if ( typeof exports === "object" ) {
+	// Node/CommonJS
+	factory( require( "jquery", "taboverride" ) );
+    } else if ( typeof define === "function" && define.amd ) {
+	// AMD - Register as an anonymous module
+	// Files must be concatenated using an AMD-aware tool such as r.js
+	define( [ "jquery", "taboverride" ], factory );
     } else {
-        // No AMD - Use global variables instead
-        factory( jQuery, TABOVERRIDE );
+	// No AMD - Use global variables instead
+	factory( jQuery, TABOVERRIDE );
     }
 }(function ( $, TABOVERRIDE ) {
     "use strict";
@@ -54,10 +57,10 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
      */
     var tabOverride = $.fn.tabOverride = function ( enable, selector ) {
 
-        var enablePlugin = !arguments.length || enable,
+	var enablePlugin = !arguments.length || enable,
             isDelegated = typeof selector === "string";
 
-        if ( isDelegated ) {
+	if ( isDelegated ) {
             // Always remove the event handlers
             this.off( ".tabOverride", selector );
 
@@ -70,10 +73,10 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
             // The jQuery object acts as an array of elements, so it can be passed
             // to TABOVERRIDE.set()
             TABOVERRIDE.set( this, enablePlugin );
-        }
+	}
 
-        // Return the jQuery object
-        return this;
+	// Return the jQuery object
+	return this;
     };
 
     /**

@@ -29,10 +29,10 @@
     "bugs": "https://github.com/wjbryant/jquery.taboverride/issues",
     "devDependencies": {
         "grunt": "~0.4.0",
-        "grunt-contrib-jshint": "~0.1.1",
+        "grunt-contrib-jshint": "~0.2.0",
         "grunt-contrib-clean": "~0.4.0",
-        "grunt-contrib-concat": "~0.1.2",
-        "grunt-contrib-uglify": "~0.1.1",
-        "jsdoc": "git://github.com/jsdoc3/jsdoc.git#v3.1.0"
+        "grunt-contrib-concat": "~0.1.3",
+        "grunt-contrib-uglify": "~0.1.2",
+        "jsdoc": "git://github.com/jsdoc3/jsdoc.git#v3.1.1"
     }
 }
