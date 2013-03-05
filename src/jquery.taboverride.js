@@ -19,7 +19,7 @@
 (function ( factory ) {
     "use strict";
 
-    if ( typeof exports === "object" ) {
+    if ( typeof exports === "object" && typeof require === "function" ) {
 	// Node/CommonJS
 	factory( require( "jquery", "taboverride" ) );
     } else if ( typeof define === "function" && define.amd ) {
