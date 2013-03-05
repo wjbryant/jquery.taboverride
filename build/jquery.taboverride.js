@@ -29,14 +29,14 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
     "use strict";
 
     if ( typeof exports === "object" && typeof require === "function" ) {
-	// Node/CommonJS
+	// Node.js/CommonJS
 	factory( require( "jquery", "taboverride" ) );
     } else if ( typeof define === "function" && define.amd ) {
 	// AMD - Register as an anonymous module
 	// Files must be concatenated using an AMD-aware tool such as r.js
 	define( [ "jquery", "taboverride" ], factory );
     } else {
-	// No AMD - Use global variables instead
+	// No module format - Use global variables instead
 	factory( jQuery, TABOVERRIDE );
     }
 }(function ( $, TABOVERRIDE ) {
