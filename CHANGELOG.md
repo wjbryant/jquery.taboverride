@@ -1,18 +1,18 @@
 # Tab Override jQuery Plugin Changelog
 
-## Dev
+## 3.2.4 (2013-03-12)
+* Added CommonJS module support
 * Updated build process
   * Use JSHint for all js files
   * Generate API documentation with JSDoc 3
-* Support CommonJS
 
-## 3.2.3 (2012-01-21)
+## 3.2.3 (2013-01-21)
 * Improved description and dependencies in manifest file
 
-## 3.2.2 (2012-01-19)
+## 3.2.2 (2013-01-19)
 * Updated manifest file and registered on plugins.jquery.com
 
-## 3.2.1 (2012-01-17)
+## 3.2.1 (2013-01-17)
 * Register as an anonymous AMD module instead of a named one
 
 ## 3.2.0 (2012-12-12)
