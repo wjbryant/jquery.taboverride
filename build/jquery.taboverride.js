@@ -30,7 +30,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 
 	if ( typeof exports === "object" && typeof require === "function" ) {
 		// Node.js/CommonJS
-		factory( require( "jquery", "taboverride" ) );
+		factory( require( "jquery" ), require( "taboverride" ) );
 	} else if ( typeof define === "function" && define.amd ) {
 		// AMD - Register as an anonymous module
 		// Files must be concatenated using an AMD-aware tool such as r.js

@@ -34,8 +34,6 @@ into a `components` directory in your project.
 
 This plugin is [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) compatible and
 can be loaded using a script loader such as [RequireJS](http://requirejs.org/).
-The script loader will automatically load all available dependencies when
-`jquery.taboverride` is required.
 
 #### Optimization
 
@@ -49,6 +47,11 @@ r.js -o name=jquery.taboverride out=jquery.taboverride.combined.min.js paths.jqu
 
 *Note: The above command assumes both files are in the same directory. On Windows,
 you may have to use `r.js.cmd` instead.*
+
+### CommonJS
+
+This plugin is also compatible with [CommonJS module](http://wiki.commonjs.org/wiki/Modules)
+systems.
 
 ## Usage
 
