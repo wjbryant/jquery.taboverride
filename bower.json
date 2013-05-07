@@ -1,9 +1,9 @@
 {
     "name": "jquery.taboverride",
-    "version": "3.2.4",
+    "version": "4.0.0-dev",
     "main": "./build/jquery.taboverride.js",
     "dependencies": {
         "jquery": ">=1.7.0 <2.0.0",
-        "taboverride": ">=3.2.0 <4.0.0"
+        "taboverride": ">=4.0.0 <5.0.0"
     }
 }

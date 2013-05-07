@@ -1,6 +1,6 @@
 {
     "name": "taboverride",
-    "version": "3.2.4",
+    "version": "4.0.0-dev",
     "author": {
         "name": "Bill Bryant",
         "url": "http://wjbryant.com/"
@@ -28,6 +28,6 @@
     "demo": "http://wjbryant.github.com/taboverride/",
     "dependencies": {
         "jquery": ">=1.7.0 <2.0.0",
-        "taboverride-lib": ">=3.2.0 <4.0.0"
+        "taboverride-lib": ">=4.0.0 <5.0.0"
     }
 }

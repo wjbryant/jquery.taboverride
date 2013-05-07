@@ -10,7 +10,7 @@ documentation is available at
 The latest version of the plugin requires:
 
 * [jQuery](http://jquery.com/) v1.7.0+
-* [Tab Override](https://github.com/wjbryant/taboverride) v3.2.0+
+* [Tab Override](https://github.com/wjbryant/taboverride) v4.0.0+
 
 **Important:** The `jquery.taboverride.js` file no longer includes the taboverride
 core dependency. The [`taboverride.js` or `taboverride.min.js`](https://github.com/wjbryant/jquery.taboverride/tags)

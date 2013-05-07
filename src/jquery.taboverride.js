@@ -8,7 +8,7 @@
  */
 
 /**
- * the jQuery function "namespace"
+ * the jQuery prototype shortcut "namespace"
  *
  * @name fn
  * @namespace
@@ -33,32 +33,50 @@
 }(function ( $, TABOVERRIDE ) {
 	"use strict";
 
+	var delegatedExtensions = [];
+
 	/**
-	 * the tabOverride method - Tabs will be overridden if enable is true.
+	 * the tabOverride method "namespace"
+	 *
+	 * @name tabOverride
+	 * @namespace
+	 * @memberOf jQuery.fn
+	 */
+
+	/**
+	 * Enables/disables Tab Override. If enabled, tabs (or spaces) will be
+	 * inserted in the selected textarea elements when the tab key is pressed.
 	 *
 	 * @param  {Boolean} [enable=true]  whether Tab Override should be enabled
 	 *                                  for the element(s)
 	 * @param  {String}  [selector]     the selector string for delegated events
 	 * @return {Object}                 the jQuery object
 	 *
-	 * @name tabOverride
-	 * @memberOf jQuery.fn
+	 * @name "tabOverride"
 	 * @function
-	 * @namespace
+	 * @memberOf jQuery.fn
 	 */
-	var tabOverride = $.fn.tabOverride = function ( enable, selector ) {
+	var $fnTabOverride = $.fn.tabOverride = function ( enable, selector ) {
 
 		var enablePlugin = !arguments.length || enable,
-			isDelegated = typeof selector === "string";
+			isDelegated = typeof selector === "string",
+			$container;
 
 		if ( isDelegated ) {
+			$container = this;
+
 			// Always remove the event handlers
-			this.off( ".tabOverride", selector );
+			$container.off( ".tabOverride", selector );
+
+			// Allow extensions for delegated events
+			$.each( delegatedExtensions, function () {
+				this( $container, selector, enable );
+			});
 
 			if ( enablePlugin ) {
-				this
-					.on( "keydown.tabOverride", selector, TABOVERRIDE.overrideKeyDown )
-					.on( "keypress.tabOverride", selector, TABOVERRIDE.overrideKeyPress );
+				$container
+					.on( "keydown.tabOverride", selector, TABOVERRIDE.handlers.keydown )
+					.on( "keypress.tabOverride", selector, TABOVERRIDE.handlers.keypress );
 			}
 		} else {
 			// The jQuery object acts as an array of elements, so it can be passed
@@ -68,6 +86,18 @@
 
 		// Return the jQuery object
 		return this;
+	};
+
+    /**
+     * Adds an extension function for delegated events.
+     *
+     * @name addDelegatedExtension
+     * @memberOf jQuery.fn.tabOverride
+     */
+	$fnTabOverride.addDelegatedExtension = function (func) {
+		if ($.isFunction(func)) {
+			delegatedExtensions.push(func);
+		}
 	};
 
 	/**
@@ -81,7 +111,7 @@
 	 * @function
 	 * @memberOf jQuery.fn.tabOverride
 	 */
-	tabOverride.tabSize = TABOVERRIDE.tabSize;
+	$fnTabOverride.tabSize = TABOVERRIDE.tabSize;
 
 	/**
 	 * Gets or sets the auto indent setting. True if each line should be
@@ -95,35 +125,35 @@
 	 * @function
 	 * @memberOf jQuery.fn.tabOverride
 	 */
-	tabOverride.autoIndent = TABOVERRIDE.autoIndent;
+	$fnTabOverride.autoIndent = TABOVERRIDE.autoIndent;
 
 	/**
 	 * Gets or sets the tab key combination.
 	 *
-	 * @param  {Number}        keyCode             the key code of the key to use for tab
-	 * @param  {String[]}      [modifierKeyNames]  the modifier key names - valid names are
-	 *                                             'alt', 'ctrl', 'meta', and 'shift'
-	 * @return {String|Function}                   the current tab key combination or the
-	 *                                             tabOverride function
+	 * @param  {Number}          keyCode             the key code of the key to use for tab
+	 * @param  {String[]}        [modifierKeyNames]  the modifier key names - valid names are
+	 *                                               'alt', 'ctrl', 'meta', and 'shift'
+	 * @return {String|Function}                     the current tab key combination or the
+	 *                                               tabOverride function
 	 *
 	 * @name tabKey
 	 * @function
 	 * @memberOf jQuery.fn.tabOverride
 	 */
-	tabOverride.tabKey = TABOVERRIDE.tabKey;
+	$fnTabOverride.tabKey = TABOVERRIDE.tabKey;
 
 	/**
 	 * Gets or sets the untab key combination.
 	 *
-	 * @param  {Number}        keyCode             the key code of the key to use for untab
-	 * @param  {String[]}      [modifierKeyNames]  the modifier key names - valid names are
-	 *                                             'alt', 'ctrl', 'meta', and 'shift'
-	 * @return {String|Function}                   the current untab key combination or the
-	 *                                             tabOverride function
+	 * @param  {Number}          keyCode             the key code of the key to use for untab
+	 * @param  {String[]}        [modifierKeyNames]  the modifier key names - valid names are
+	 *                                               'alt', 'ctrl', 'meta', and 'shift'
+	 * @return {String|Function}                     the current untab key combination or the
+	 *                                               tabOverride function
 	 *
 	 * @name untabKey
 	 * @function
 	 * @memberOf jQuery.fn.tabOverride
 	 */
-	tabOverride.untabKey = TABOVERRIDE.untabKey;
+	$fnTabOverride.untabKey = TABOVERRIDE.untabKey;
 }));
