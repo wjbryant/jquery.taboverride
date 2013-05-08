@@ -33,7 +33,23 @@
 }(function ( $, TABOVERRIDE ) {
 	"use strict";
 
-	var delegatedExtensions = [];
+	var delegatedExtensions = [],
+		$fnTabOverride;
+
+	function removeDelegatedListeners( $container, selector ) {
+		$container.off({
+			"keydown.tabOverride": TABOVERRIDE.handlers.keydown,
+			"keypress.tabOverride": TABOVERRIDE.handlers.keypress
+		}, selector );
+	}
+
+	function addDelegatedListeners( $container, selector ) {
+		removeDelegatedListeners( $container, selector );
+		$container.on({
+			"keydown.tabOverride": TABOVERRIDE.handlers.keydown,
+			"keypress.tabOverride": TABOVERRIDE.handlers.keypress
+		}, selector );
+	}
 
 	/**
 	 * the tabOverride method "namespace"
@@ -56,7 +72,7 @@
 	 * @function
 	 * @memberOf jQuery.fn
 	 */
-	var $fnTabOverride = $.fn.tabOverride = function ( enable, selector ) {
+	$fnTabOverride = $.fn.tabOverride = function ( enable, selector ) {
 
 		var enablePlugin = !arguments.length || enable,
 			isDelegated = typeof selector === "string",
@@ -65,18 +81,15 @@
 		if ( isDelegated ) {
 			$container = this;
 
-			// Always remove the event handlers
-			$container.off( ".tabOverride", selector );
-
 			// Allow extensions for delegated events
 			$.each( delegatedExtensions, function () {
 				this( $container, selector, enable );
 			});
 
 			if ( enablePlugin ) {
-				$container
-					.on( "keydown.tabOverride", selector, TABOVERRIDE.handlers.keydown )
-					.on( "keypress.tabOverride", selector, TABOVERRIDE.handlers.keypress );
+				addDelegatedListeners( $container, selector );
+			} else {
+				removeDelegatedListeners( $container, selector );
 			}
 		} else {
 			// The jQuery object acts as an array of elements, so it can be passed
@@ -88,12 +101,17 @@
 		return this;
 	};
 
-    /**
-     * Adds an extension function for delegated events.
-     *
-     * @name addDelegatedExtension
-     * @memberOf jQuery.fn.tabOverride
-     */
+	$fnTabOverride.utils = {
+		addDelegatedListeners: addDelegatedListeners,
+		removeDelegatedListeners: removeDelegatedListeners
+	};
+
+	/**
+	 * Adds an extension function for delegated events.
+	 *
+	 * @name addDelegatedExtension
+	 * @memberOf jQuery.fn.tabOverride
+	 */
 	$fnTabOverride.addDelegatedExtension = function (func) {
 		if ($.isFunction(func)) {
 			delegatedExtensions.push(func);
