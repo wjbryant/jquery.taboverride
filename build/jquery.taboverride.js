@@ -7,7 +7,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
  * @version      4.0.0-dev
  */
 
-/*global exports, require, define, jQuery, TABOVERRIDE */
+/*global exports, require, define, jQuery, tabOverride */
 
 /**
  * the global jQuery object
@@ -37,9 +37,9 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 		define( [ "jquery", "taboverride" ], factory );
 	} else {
 		// No module format - Use global variables instead
-		factory( jQuery, TABOVERRIDE );
+		factory( jQuery, tabOverride );
 	}
-}(function ( $, TABOVERRIDE ) {
+}(function ( $, tabOverride ) {
 	"use strict";
 
 	var delegatedExtensions = [],
@@ -47,16 +47,16 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 
 	function removeDelegatedListeners( $container, selector ) {
 		$container.off({
-			"keydown.tabOverride": TABOVERRIDE.handlers.keydown,
-			"keypress.tabOverride": TABOVERRIDE.handlers.keypress
+			"keydown.tabOverride": tabOverride.handlers.keydown,
+			"keypress.tabOverride": tabOverride.handlers.keypress
 		}, selector );
 	}
 
 	function addDelegatedListeners( $container, selector ) {
 		removeDelegatedListeners( $container, selector );
 		$container.on({
-			"keydown.tabOverride": TABOVERRIDE.handlers.keydown,
-			"keypress.tabOverride": TABOVERRIDE.handlers.keypress
+			"keydown.tabOverride": tabOverride.handlers.keydown,
+			"keypress.tabOverride": tabOverride.handlers.keypress
 		}, selector );
 	}
 
@@ -102,8 +102,8 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 			}
 		} else {
 			// The jQuery object acts as an array of elements, so it can be passed
-			// to TABOVERRIDE.set()
-			TABOVERRIDE.set( this, enablePlugin );
+			// to tabOverride.set()
+			tabOverride.set( this, enablePlugin );
 		}
 
 		// Return the jQuery object
@@ -138,7 +138,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * @function
 	 * @memberOf jQuery.fn.tabOverride
 	 */
-	$fnTabOverride.tabSize = TABOVERRIDE.tabSize;
+	$fnTabOverride.tabSize = tabOverride.tabSize;
 
 	/**
 	 * Gets or sets the auto indent setting. True if each line should be
@@ -152,7 +152,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * @function
 	 * @memberOf jQuery.fn.tabOverride
 	 */
-	$fnTabOverride.autoIndent = TABOVERRIDE.autoIndent;
+	$fnTabOverride.autoIndent = tabOverride.autoIndent;
 
 	/**
 	 * Gets or sets the tab key combination.
@@ -167,7 +167,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * @function
 	 * @memberOf jQuery.fn.tabOverride
 	 */
-	$fnTabOverride.tabKey = TABOVERRIDE.tabKey;
+	$fnTabOverride.tabKey = tabOverride.tabKey;
 
 	/**
 	 * Gets or sets the untab key combination.
@@ -182,5 +182,5 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * @function
 	 * @memberOf jQuery.fn.tabOverride
 	 */
-	$fnTabOverride.untabKey = TABOVERRIDE.untabKey;
+	$fnTabOverride.untabKey = tabOverride.untabKey;
 }));
