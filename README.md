@@ -3,7 +3,7 @@
 This plugin makes it easy to use [Tab Override](https://github.com/wjbryant/taboverride)
 with jQuery by mapping the Tab Override API to jQuery methods. Code
 documentation is available at
-[wjbryant.github.com/jquery.taboverride/docs/](http://wjbryant.github.com/jquery.taboverride/docs/jQuery.fn.tabOverride.html "Tab Override jQuery Plugin Code Documentation").
+[wjbryant.github.io/jquery.taboverride/docs/](http://wjbryant.github.io/jquery.taboverride/docs/jQuery.fn.tabOverride.html "Tab Override jQuery Plugin Code Documentation").
 
 ## Dependencies
 
