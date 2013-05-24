@@ -5,7 +5,7 @@ require.config({
     // the modules are in different directories
     paths: {
         'jquery': 'lib/jquery-1.9.1.min',
-        'taboverride': 'lib/taboverride-3.3.0-dev.min',
+        'taboverride': 'lib/taboverride-4.0.0-dev.2013.05.24.min',
         'jquery.taboverride': '../build/jquery.taboverride.min'
     }
 });
