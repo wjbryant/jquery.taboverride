@@ -33,23 +33,59 @@
 }(function ( $, tabOverride ) {
 	"use strict";
 
-	var delegatedExtensions = [],
+	var hooks = {},
 		$fnTabOverride;
 
-	function removeDelegatedListeners( $container, selector ) {
+	/**
+	 * Executes all registered extension functions for the specified hook.
+	 *
+	 * @param {string}  hook    the name of the hook for which the extensions are registered
+	 * @param {Array}   [args]  the arguments to pass to the extension
+	 *
+	 * @private
+	 */
+	function executeExtensions( hook, args ) {
+		$.each( hooks[ hook ], function () {
+			this.apply( null, args );
+		});
+	}
+
+	/**
+	 * Helper function to remove the delegated listeners. This is only used in
+	 * the removeDelegatedListeners and addDelegatedListeners functions.
+	 *
+	 * @see jQuery.fn.tabOverride.removeDelegatedListeners
+	 * @private
+	 */
+	function removeDelegatedListenersHelper( $container, selector ) {
 		$container.off({
 			"keydown.tabOverride": tabOverride.handlers.keydown,
 			"keypress.tabOverride": tabOverride.handlers.keypress
 		}, selector );
 	}
 
+	/**
+	 * @see jQuery.fn.tabOverride.removeDelegatedListeners
+	 * @private
+	 */
+	function removeDelegatedListeners( $container, selector ) {
+		executeExtensions( "removeDelegatedListeners", $container, selector );
+		removeDelegatedListenersHelper( $container, selector );
+	}
+
+	/**
+	 * @see jQuery.fn.tabOverride.addDelegatedListeners
+	 * @private
+	 */
 	function addDelegatedListeners( $container, selector ) {
-		removeDelegatedListeners( $container, selector );
+		executeExtensions( "addDelegatedListeners", $container, selector );
+		removeDelegatedListenersHelper( $container, selector );
 		$container.on({
 			"keydown.tabOverride": tabOverride.handlers.keydown,
 			"keypress.tabOverride": tabOverride.handlers.keypress
 		}, selector );
 	}
+
 
 	/**
 	 * the tabOverride method "namespace"
@@ -63,9 +99,9 @@
 	 * Enables/disables Tab Override. If enabled, tabs (or spaces) will be
 	 * inserted in the selected textarea elements when the tab key is pressed.
 	 *
-	 * @param  {Boolean} [enable=true]  whether Tab Override should be enabled
+	 * @param  {boolean} [enable=true]  whether Tab Override should be enabled
 	 *                                  for the element(s)
-	 * @param  {String}  [selector]     the selector string for delegated events
+	 * @param  {string}  [selector]     the selector string for delegated events
 	 * @return {Object}                 the jQuery object
 	 *
 	 * @name "tabOverride"
@@ -81,10 +117,7 @@
 		if ( isDelegated ) {
 			$container = this;
 
-			// Allow extensions for delegated events
-			$.each( delegatedExtensions, function () {
-				this( $container, selector, enable );
-			});
+			executeExtensions( "setDelegated", [ $container, selector, enable ] );
 
 			if ( enablePlugin ) {
 				addDelegatedListeners( $container, selector );
@@ -101,29 +134,70 @@
 		return this;
 	};
 
+	/**
+	 * Namespace for utility functions
+	 *
+	 * @name utils
+	 * @namespace
+	 * @memberOf jQuery.fn.tabOverride
+	 */
 	$fnTabOverride.utils = {
+		/**
+		 * Adds the Tab Override event listeners to the container element using
+		 * jQuery delegated events.
+		 *
+		 * @param {Object} $container  the jQuery object for the container element
+		 * @param {string} selector    the selector string to use for the delegated events
+		 *
+		 * @function
+		 * @memberOf jQuery.fn.tabOverride.utils
+		 */
 		addDelegatedListeners: addDelegatedListeners,
+
+		/**
+		 * Removes the Tab Override event listeners on the container element
+		 * using jQuery delegated events.
+		 *
+		 * @param {Object} $container  the jQuery object for the container element
+		 * @param {string} selector    the selector string to use for the delegated events
+		 *
+		 * @function
+		 * @memberOf jQuery.fn.tabOverride.utils
+		 */
 		removeDelegatedListeners: removeDelegatedListeners
 	};
 
 	/**
-	 * Adds an extension function for delegated events.
+	 * Adds an extension function to be executed when the specified hook is
+	 * "fired." The extension function is called for each element and is passed
+	 * any relevant arguments for the hook.
 	 *
-	 * @name addDelegatedExtension
+	 * @param  {string}   hook  the name of the hook for which the extension
+	 *                          will be registered
+	 * @param  {Function} func  the function to be executed when the hook is "fired"
+	 * @return {Function}       the tabOverride function
+	 *
+	 * @name addExtension
+	 * @function
 	 * @memberOf jQuery.fn.tabOverride
 	 */
-	$fnTabOverride.addDelegatedExtension = function (func) {
-		if ($.isFunction(func)) {
-			delegatedExtensions.push(func);
+	$fnTabOverride.addExtension = function ( hook, func ) {
+		if ( hook && typeof hook === "string" && $.isFunction( func ) ) {
+			if ( !hooks[ hook ] ) {
+				hooks[ hook ] = [];
+			}
+			hooks[ hook ].push( func );
 		}
+
+		return this;
 	};
 
 	/**
 	 * Gets or sets the tab size for all elements that have Tab Override enabled.
 	 * 0 represents the tab character.
 	 *
-	 * @param  {Number}          [size]  the tab size
-	 * @return {Number|Function}         the tab size or the tabOverride function
+	 * @param  {number}          [size]  the tab size
+	 * @return {number|Function}         the tab size or the tabOverride function
 	 *
 	 * @name tabSize
 	 * @function
@@ -135,8 +209,8 @@
 	 * Gets or sets the auto indent setting. True if each line should be
 	 * automatically indented (default = false).
 	 *
-	 * @param  {Boolean}          [enable]  whether auto indent should be enabled
-	 * @return {Boolean|Function}           whether auto indent is enabled or the
+	 * @param  {boolean}          [enable]  whether auto indent should be enabled
+	 * @return {boolean|Function}           whether auto indent is enabled or the
 	 *                                      tabOverride function
 	 *
 	 * @name autoIndent
@@ -148,10 +222,10 @@
 	/**
 	 * Gets or sets the tab key combination.
 	 *
-	 * @param  {Number}          keyCode             the key code of the key to use for tab
-	 * @param  {String[]}        [modifierKeyNames]  the modifier key names - valid names are
+	 * @param  {number}          keyCode             the key code of the key to use for tab
+	 * @param  {string[]}        [modifierKeyNames]  the modifier key names - valid names are
 	 *                                               'alt', 'ctrl', 'meta', and 'shift'
-	 * @return {String|Function}                     the current tab key combination or the
+	 * @return {string|Function}                     the current tab key combination or the
 	 *                                               tabOverride function
 	 *
 	 * @name tabKey
@@ -163,10 +237,10 @@
 	/**
 	 * Gets or sets the untab key combination.
 	 *
-	 * @param  {Number}          keyCode             the key code of the key to use for untab
-	 * @param  {String[]}        [modifierKeyNames]  the modifier key names - valid names are
+	 * @param  {number}          keyCode             the key code of the key to use for untab
+	 * @param  {string[]}        [modifierKeyNames]  the modifier key names - valid names are
 	 *                                               'alt', 'ctrl', 'meta', and 'shift'
-	 * @return {String|Function}                     the current untab key combination or the
+	 * @return {string|Function}                     the current untab key combination or the
 	 *                                               tabOverride function
 	 *
 	 * @name untabKey

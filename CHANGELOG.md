@@ -2,7 +2,7 @@
 
 ## 4.0.0-dev
 * Use `handlers` namespace
-* Added `addDelegatedExtension()` method
+* Added extension system using hooks
 
 ## 3.2.4 (2013-03-12)
 * Added CommonJS module support
