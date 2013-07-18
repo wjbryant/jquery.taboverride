@@ -42,22 +42,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 }(function ( $, tabOverride ) {
 	"use strict";
 
-	var hooks = {},
-		$fnTabOverride;
-
-	/**
-	 * Executes all registered extension functions for the specified hook.
-	 *
-	 * @param {string}  hook    the name of the hook for which the extensions are registered
-	 * @param {Array}   [args]  the arguments to pass to the extension
-	 *
-	 * @private
-	 */
-	function executeExtensions( hook, args ) {
-		$.each( hooks[ hook ], function () {
-			this.apply( null, args );
-		});
-	}
+	var $fnTabOverride;
 
 	/**
 	 * Helper function to remove the delegated listeners. This is only used in
@@ -78,7 +63,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * @private
 	 */
 	function removeDelegatedListeners( $container, selector ) {
-		executeExtensions( "removeDelegatedListeners", $container, selector );
+		tabOverride.utils.executeExtensions( "removeDelegatedListeners", [ $container, selector ] );
 		removeDelegatedListenersHelper( $container, selector );
 	}
 
@@ -87,7 +72,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * @private
 	 */
 	function addDelegatedListeners( $container, selector ) {
-		executeExtensions( "addDelegatedListeners", $container, selector );
+		tabOverride.utils.executeExtensions( "addDelegatedListeners", [ $container, selector ] );
 		removeDelegatedListenersHelper( $container, selector );
 		$container.on({
 			"keydown.tabOverride": tabOverride.handlers.keydown,
@@ -126,7 +111,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 		if ( isDelegated ) {
 			$container = this;
 
-			executeExtensions( "setDelegated", [ $container, selector, enable ] );
+			tabOverride.utils.executeExtensions( "setDelegated", [ $container, selector, enable ] );
 
 			if ( enablePlugin ) {
 				addDelegatedListeners( $container, selector );
@@ -174,31 +159,6 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 		 * @memberOf jQuery.fn.tabOverride.utils
 		 */
 		removeDelegatedListeners: removeDelegatedListeners
-	};
-
-	/**
-	 * Adds an extension function to be executed when the specified hook is
-	 * "fired." The extension function is called for each element and is passed
-	 * any relevant arguments for the hook.
-	 *
-	 * @param  {string}   hook  the name of the hook for which the extension
-	 *                          will be registered
-	 * @param  {Function} func  the function to be executed when the hook is "fired"
-	 * @return {Function}       the tabOverride function
-	 *
-	 * @name addExtension
-	 * @function
-	 * @memberOf jQuery.fn.tabOverride
-	 */
-	$fnTabOverride.addExtension = function ( hook, func ) {
-		if ( hook && typeof hook === "string" && $.isFunction( func ) ) {
-			if ( !hooks[ hook ] ) {
-				hooks[ hook ] = [];
-			}
-			hooks[ hook ].push( func );
-		}
-
-		return this;
 	};
 
 	/**
