@@ -71,11 +71,11 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 		}, selector );
 	}
 
-    /**
-     * The tabOverride method namespace
-     *
-     * @namespace external:"jQuery.fn".tabOverride
-     */
+	/**
+	 * The tabOverride method namespace
+	 *
+	 * @namespace external:"jQuery.fn".tabOverride
+	 */
 
 	/**
 	 * Enables/disables Tab Override. If enabled, tabs (or spaces) will be

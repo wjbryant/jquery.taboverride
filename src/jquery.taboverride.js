@@ -62,11 +62,11 @@
 		}, selector );
 	}
 
-    /**
-     * The tabOverride method namespace
-     *
-     * @namespace external:"jQuery.fn".tabOverride
-     */
+	/**
+	 * The tabOverride method namespace
+	 *
+	 * @namespace external:"jQuery.fn".tabOverride
+	 */
 
 	/**
 	 * Enables/disables Tab Override. If enabled, tabs (or spaces) will be
