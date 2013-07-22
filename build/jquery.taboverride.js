@@ -10,18 +10,9 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 /*global exports, require, define, jQuery, tabOverride */
 
 /**
- * the global jQuery object
+ * The jQuery plugin namespace
  *
- * @name jQuery
- * @namespace
- */
-
-/**
- * the jQuery prototype shortcut "namespace"
- *
- * @name fn
- * @namespace
- * @memberOf jQuery
+ * @external "jQuery.fn"
  */
 
 // Use CommonJS or AMD if available
@@ -48,7 +39,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * Helper function to remove the delegated listeners. This is only used in
 	 * the removeDelegatedListeners and addDelegatedListeners functions.
 	 *
-	 * @see jQuery.fn.tabOverride.removeDelegatedListeners
+	 * @see external:"jQuery.fn".tabOverride.removeDelegatedListeners
 	 * @private
 	 */
 	function removeDelegatedListenersHelper( $container, selector ) {
@@ -59,7 +50,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	}
 
 	/**
-	 * @see jQuery.fn.tabOverride.removeDelegatedListeners
+	 * @see external:"jQuery.fn".tabOverride.removeDelegatedListeners
 	 * @private
 	 */
 	function removeDelegatedListeners( $container, selector ) {
@@ -68,7 +59,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	}
 
 	/**
-	 * @see jQuery.fn.tabOverride.addDelegatedListeners
+	 * @see external:"jQuery.fn".tabOverride.addDelegatedListeners
 	 * @private
 	 */
 	function addDelegatedListeners( $container, selector ) {
@@ -80,14 +71,11 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 		}, selector );
 	}
 
-
-	/**
-	 * the tabOverride method "namespace"
-	 *
-	 * @name tabOverride
-	 * @namespace
-	 * @memberOf jQuery.fn
-	 */
+    /**
+     * The tabOverride method namespace
+     *
+     * @namespace external:"jQuery.fn".tabOverride
+     */
 
 	/**
 	 * Enables/disables Tab Override. If enabled, tabs (or spaces) will be
@@ -98,9 +86,7 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * @param  {string}  [selector]     the selector string for delegated events
 	 * @return {Object}                 the jQuery object
 	 *
-	 * @name "tabOverride"
-	 * @function
-	 * @memberOf jQuery.fn
+	 * @method external:"jQuery.fn".tabOverride(2)
 	 */
 	$fnTabOverride = $.fn.tabOverride = function ( enable, selector ) {
 
@@ -129,11 +115,9 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	};
 
 	/**
-	 * Namespace for utility functions
+	 * Namespace for utility methods
 	 *
-	 * @name utils
-	 * @namespace
-	 * @memberOf jQuery.fn.tabOverride
+	 * @namespace external:"jQuery.fn".tabOverride.utils
 	 */
 	$fnTabOverride.utils = {
 		/**
@@ -143,8 +127,8 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 		 * @param {Object} $container  the jQuery object for the container element
 		 * @param {string} selector    the selector string to use for the delegated events
 		 *
-		 * @function
-		 * @memberOf jQuery.fn.tabOverride.utils
+		 * @method
+		 * @memberOf external:"jQuery.fn".tabOverride.utils
 		 */
 		addDelegatedListeners: addDelegatedListeners,
 
@@ -155,8 +139,8 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 		 * @param {Object} $container  the jQuery object for the container element
 		 * @param {string} selector    the selector string to use for the delegated events
 		 *
-		 * @function
-		 * @memberOf jQuery.fn.tabOverride.utils
+		 * @method
+		 * @memberOf external:"jQuery.fn".tabOverride.utils
 		 */
 		removeDelegatedListeners: removeDelegatedListeners
 	};
@@ -168,9 +152,8 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * @param  {number}          [size]  the tab size
 	 * @return {number|Function}         the tab size or the tabOverride function
 	 *
-	 * @name tabSize
-	 * @function
-	 * @memberOf jQuery.fn.tabOverride
+	 * @method tabSize
+	 * @memberOf external:"jQuery.fn".tabOverride
 	 */
 	$fnTabOverride.tabSize = tabOverride.tabSize;
 
@@ -182,9 +165,8 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * @return {boolean|Function}           whether auto indent is enabled or the
 	 *                                      tabOverride function
 	 *
-	 * @name autoIndent
-	 * @function
-	 * @memberOf jQuery.fn.tabOverride
+	 * @method autoIndent
+	 * @memberOf external:"jQuery.fn".tabOverride
 	 */
 	$fnTabOverride.autoIndent = tabOverride.autoIndent;
 
@@ -197,9 +179,8 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * @return {string|Function}                     the current tab key combination or the
 	 *                                               tabOverride function
 	 *
-	 * @name tabKey
-	 * @function
-	 * @memberOf jQuery.fn.tabOverride
+	 * @method tabKey
+	 * @memberOf external:"jQuery.fn".tabOverride
 	 */
 	$fnTabOverride.tabKey = tabOverride.tabKey;
 
@@ -212,9 +193,8 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * @return {string|Function}                     the current untab key combination or the
 	 *                                               tabOverride function
 	 *
-	 * @name untabKey
-	 * @function
-	 * @memberOf jQuery.fn.tabOverride
+	 * @method untabKey
+	 * @memberOf external:"jQuery.fn".tabOverride
 	 */
 	$fnTabOverride.untabKey = tabOverride.untabKey;
 }));
