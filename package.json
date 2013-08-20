@@ -1,6 +1,6 @@
 {
     "name": "jquery.taboverride",
-    "version": "4.0.0-dev",
+    "version": "4.0.0",
     "author": {
         "name": "Bill Bryant",
         "url": "http://wjbryant.com/"
@@ -29,7 +29,7 @@
     "bugs": "https://github.com/wjbryant/jquery.taboverride/issues",
     "devDependencies": {
         "grunt": "~0.4.1",
-        "grunt-contrib-jshint": "~0.6.0",
+        "grunt-contrib-jshint": "~0.6.2",
         "grunt-contrib-clean": "~0.5.0",
         "grunt-contrib-concat": "~0.3.0",
         "grunt-contrib-uglify": "~0.2.2",

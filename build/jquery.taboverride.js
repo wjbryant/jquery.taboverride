@@ -1,10 +1,10 @@
-/*! jquery.taboverride v4.0.0-dev | https://github.com/wjbryant/jquery.taboverride
+/*! jquery.taboverride v4.0.0 | https://github.com/wjbryant/jquery.taboverride
 Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 
 /**
  * @fileOverview Tab Override jQuery plugin
  * @author       Bill Bryant
- * @version      4.0.0-dev
+ * @version      4.0.0
  */
 
 /*global exports, require, define, jQuery, tabOverride */

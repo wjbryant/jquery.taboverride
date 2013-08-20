@@ -12,11 +12,6 @@ The latest version of the plugin requires:
 * [jQuery](http://jquery.com/) v1.7.0+
 * [Tab Override](https://github.com/wjbryant/taboverride) v4.0.0+
 
-**Important:** The `jquery.taboverride.js` file no longer includes the taboverride
-core dependency. The [`taboverride.js` or `taboverride.min.js`](https://github.com/wjbryant/jquery.taboverride/tags)
-file must be included in the page before `jquery.taboverride.js`. Alternatively,
-the files may be concatenated together (see [Optimization](#optimization) below).
-
 ### Bower
 
 This plugin is registered as `jquery.taboverride` in the global [Bower](http://twitter.github.com/bower/)
@@ -136,7 +131,7 @@ accessibility is a concern, it is recommended to set key combinations that are
 not mapped to any action by default.
 
 Setting the key combinations is done by calling the `tabKey()` or `untabKey()`
-methods with arguments. The first parameter is the key code (`number`) of the
+method with arguments. The first parameter is the key code (`number`) of the
 key. The second parameter is optional and specifies modifier keys (`alt`, `ctrl`,
 `meta`, `shift`) as an array of strings.
 

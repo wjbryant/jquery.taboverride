@@ -1,8 +1,9 @@
 # Tab Override jQuery Plugin Changelog
 
-## 4.0.0-dev
+## 4.0.0
 * Use `handlers` namespace
-* Added extension system using hooks
+* Added hooks for extension system: `setDelegated`, `addDelegatedListeners`, `removeDelegatedListeners`
+* Added `utils` namespace with `addDelegatedListeners()` and `removeDelegatedListeners()` methods
 
 ## 3.2.4 (2013-03-12)
 * Added CommonJS module support
