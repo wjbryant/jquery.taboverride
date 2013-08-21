@@ -81,6 +81,10 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	 * Enables/disables Tab Override. If enabled, tabs (or spaces) will be
 	 * inserted in the selected textarea elements when the tab key is pressed.
 	 *
+	 * Hooks: setDelegated - fired when delegated events are used, passed the
+	 * jQuery object for the container element(s), the selector string, and a
+	 * boolean indicating whether Tab Override was enabled or disabled.
+	 *
 	 * @param  {boolean} [enable=true]  whether Tab Override should be enabled
 	 *                                  for the element(s)
 	 * @param  {string}  [selector]     the selector string for delegated events
@@ -124,6 +128,9 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 		 * Adds the Tab Override event listeners to the container element using
 		 * jQuery delegated events.
 		 *
+		 * Hooks: addDelegatedListeners - passed the jQuery object for the
+		 * container element(s) and the selector string
+		 *
 		 * @param {Object} $container  the jQuery object for the container element
 		 * @param {string} selector    the selector string to use for the delegated events
 		 *
@@ -135,6 +142,9 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 		/**
 		 * Removes the Tab Override event listeners on the container element
 		 * using jQuery delegated events.
+		 *
+		 * Hooks: removeDelegatedListeners - passed the jQuery object for the
+		 * container element(s) and the selector string
 		 *
 		 * @param {Object} $container  the jQuery object for the container element
 		 * @param {string} selector    the selector string to use for the delegated events

@@ -1,8 +1,8 @@
 # Tab Override jQuery Plugin
 
 This plugin makes it easy to use [Tab Override](https://github.com/wjbryant/taboverride)
-with jQuery by mapping the Tab Override API to jQuery methods. Code
-documentation is available at
+with jQuery by providing a wrapper for the Tab Override API. In addition, it
+adds support for delegated events. Code documentation is available at
 [wjbryant.github.io/jquery.taboverride/docs/](http://wjbryant.github.io/jquery.taboverride/docs/jQuery.fn.tabOverride.html "Tab Override jQuery Plugin Code Documentation").
 
 ## Dependencies
@@ -153,6 +153,42 @@ $.fn.tabOverride
     .untabKey(9, ['shift']);
 ```
 
+### Hooks
+
+This plugin creates the following hooks for adding extension functions via the
+`tabOverride.addExtension` method.
+
+**setDelegated** - Called when Tab Override is enabled or disabled using a delegated event
+
+*Parameters:*
+* `$container` - the jQuery object for the container element(s)
+* `selector` - the selector string used to select the textareas in the container
+* `enable` - whether Tab Override was enabled or disabled
+
+**addDelegatedListeners** - Called when the event listeners for delegated events are added
+
+*Parameters:*
+* `$container` - the jQuery object for the container element(s)
+* `selector` - the selector string used to select the textareas in the container
+
+**removeDelegatedListeners** - Called when the event listeners for delegated events are removed
+
+*Parameters:*
+* `$container` - the jQuery object for the container element(s)
+* `selector` - the selector string used to select the textareas in the container
+
+### Utility Methods
+
+The jQuery plugin provides utility methods under the `$.fn.tabOverride.utils`
+namespace. These are separate from the Tab Override library utility methods
+found under `tabOverride.utils`.
+
+* `addDelegatedListeners`
+* `removeDelegatedListeners`
+
+Documentation on these methods is available in the
+[code documentation](http://wjbryant.github.io/jquery.taboverride/docs/tabOverride.utils.html).
+
 ### Additional Notes
 
 When used as setters, the settings methods can be chained together:
@@ -161,6 +197,8 @@ When used as setters, the settings methods can be chained together:
 // set up Tab Override
 $.fn.tabOverride.tabSize(4).autoIndent(true);
 ```
+
+Utility methods under the `$.fn.tabOverride.utils` namespace are not chainable.
 
 ## License
 
