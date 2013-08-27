@@ -25,30 +25,21 @@
     
     <section>
         <article>
-            <pre class="prettyprint source"><code>/*! jquery.taboverride v3.2.4 | https://github.com/wjbryant/jquery.taboverride
+            <pre class="prettyprint source"><code>/*! jquery.taboverride v4.0.0 | https://github.com/wjbryant/jquery.taboverride
 Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 
 /**
  * @fileOverview Tab Override jQuery plugin
  * @author       Bill Bryant
- * @version      3.2.4
+ * @version      4.0.0
  */
 
-/*global exports, require, define, jQuery, TABOVERRIDE */
+/*global exports, require, define, jQuery, tabOverride */
 
 /**
- * the global jQuery object
+ * The jQuery plugin namespace
  *
- * @name jQuery
- * @namespace
- */
-
-/**
- * the jQuery function "namespace"
- *
- * @name fn
- * @namespace
- * @memberOf jQuery
+ * @external "jQuery.fn"
  */
 
 // Use CommonJS or AMD if available
@@ -64,42 +55,106 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 		define( [ "jquery", "taboverride" ], factory );
 	} else {
 		// No module format - Use global variables instead
-		factory( jQuery, TABOVERRIDE );
+		factory( jQuery, tabOverride );
 	}
-}(function ( $, TABOVERRIDE ) {
+}(function ( $, tabOverride ) {
 	"use strict";
 
+	var $fnTabOverride;
+
 	/**
-	 * the tabOverride method - Tabs will be overridden if enable is true.
+	 * Helper function to remove the delegated listeners. This is only used in
+	 * the removeDelegatedListeners and addDelegatedListeners functions.
 	 *
-	 * @param  {Boolean} [enable=true]  whether Tab Override should be enabled
+	 * @see external:"jQuery.fn".tabOverride.utils.removeDelegatedListeners
+	 * @private
+	 */
+	function removeDelegatedListenersHelper( $container, selector ) {
+		$container.off({
+			"keydown.tabOverride": tabOverride.handlers.keydown,
+			"keypress.tabOverride": tabOverride.handlers.keypress
+		}, selector );
+	}
+
+	/**
+	 * Removes the Tab Override event listeners on the container element
+	 * using jQuery delegated events.
+	 *
+	 * Hooks: removeDelegatedListeners - passed the jQuery object for the
+	 * container element(s) and the selector string
+	 *
+	 * @param {Object} $container  the jQuery object for the container element
+	 * @param {string} selector    the selector string to use for the delegated events
+	 *
+	 * @method external:"jQuery.fn".tabOverride.utils.removeDelegatedListeners
+	 */
+	function removeDelegatedListeners( $container, selector ) {
+		tabOverride.utils.executeExtensions( "removeDelegatedListeners", [ $container, selector ] );
+		removeDelegatedListenersHelper( $container, selector );
+	}
+
+	/**
+	 * Adds the Tab Override event listeners to the container element using
+	 * jQuery delegated events.
+	 *
+	 * Hooks: addDelegatedListeners - passed the jQuery object for the
+	 * container element(s) and the selector string
+	 *
+	 * @param {Object} $container  the jQuery object for the container element
+	 * @param {string} selector    the selector string to use for the delegated events
+	 *
+	 * @method external:"jQuery.fn".tabOverride.utils.addDelegatedListeners
+	 */
+	function addDelegatedListeners( $container, selector ) {
+		tabOverride.utils.executeExtensions( "addDelegatedListeners", [ $container, selector ] );
+		removeDelegatedListenersHelper( $container, selector );
+		$container.on({
+			"keydown.tabOverride": tabOverride.handlers.keydown,
+			"keypress.tabOverride": tabOverride.handlers.keypress
+		}, selector );
+	}
+
+	/**
+	 * The tabOverride method namespace
+	 *
+	 * @namespace external:"jQuery.fn".tabOverride
+	 */
+
+	/**
+	 * Enables/disables Tab Override. If enabled, tabs (or spaces) will be
+	 * inserted in the selected textarea elements when the tab key is pressed.
+	 *
+	 * Hooks: setDelegated - fired when delegated events are used, passed the
+	 * jQuery object for the container element(s), the selector string, and a
+	 * boolean indicating whether Tab Override was enabled or disabled.
+	 *
+	 * @param  {boolean} [enable=true]  whether Tab Override should be enabled
 	 *                                  for the element(s)
-	 * @param  {String}  [selector]     the selector string for delegated events
+	 * @param  {string}  [selector]     the selector string for delegated events
 	 * @return {Object}                 the jQuery object
 	 *
-	 * @name tabOverride
-	 * @memberOf jQuery.fn
-	 * @function
-	 * @namespace
+	 * @method external:"jQuery.fn".tabOverride(2)
 	 */
-	var tabOverride = $.fn.tabOverride = function ( enable, selector ) {
+	$fnTabOverride = $.fn.tabOverride = function ( enable, selector ) {
 
 		var enablePlugin = !arguments.length || enable,
-			isDelegated = typeof selector === "string";
+			isDelegated = typeof selector === "string",
+			$container;
 
 		if ( isDelegated ) {
-			// Always remove the event handlers
-			this.off( ".tabOverride", selector );
+			$container = this;
+
+			tabOverride.utils.executeExtensions( "setDelegated", [ $container, selector, enable ] );
 
 			if ( enablePlugin ) {
-				this
-					.on( "keydown.tabOverride", selector, TABOVERRIDE.overrideKeyDown )
-					.on( "keypress.tabOverride", selector, TABOVERRIDE.overrideKeyPress );
+				addDelegatedListeners( $container, selector );
+			} else {
+				removeDelegatedListeners( $container, selector );
 			}
 		} else {
 			// The jQuery object acts as an array of elements, so it can be passed
-			// to TABOVERRIDE.set()
-			TABOVERRIDE.set( this, enablePlugin );
+			// to tabOverride.set()
+			tabOverride.set( this, enablePlugin );
 		}
 
 		// Return the jQuery object
@@ -107,61 +162,63 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 	};
 
 	/**
+	 * Namespace for utility methods
+	 *
+	 * @namespace external:"jQuery.fn".tabOverride.utils
+	 */
+	$fnTabOverride.utils = {
+		addDelegatedListeners: addDelegatedListeners,
+		removeDelegatedListeners: removeDelegatedListeners
+	};
+
+	/**
 	 * Gets or sets the tab size for all elements that have Tab Override enabled.
 	 * 0 represents the tab character.
 	 *
-	 * @param  {Number}          [size]  the tab size
-	 * @return {Number|Function}         the tab size or the tabOverride function
+	 * @param  {number}          [size]  the tab size
+	 * @return {number|Function}         the tab size or the tabOverride function
 	 *
-	 * @name tabSize
-	 * @function
-	 * @memberOf jQuery.fn.tabOverride
+	 * @method external:"jQuery.fn".tabOverride.tabSize
 	 */
-	tabOverride.tabSize = TABOVERRIDE.tabSize;
+	$fnTabOverride.tabSize = tabOverride.tabSize;
 
 	/**
 	 * Gets or sets the auto indent setting. True if each line should be
 	 * automatically indented (default = false).
 	 *
-	 * @param  {Boolean}          [enable]  whether auto indent should be enabled
-	 * @return {Boolean|Function}           whether auto indent is enabled or the
+	 * @param  {boolean}          [enable]  whether auto indent should be enabled
+	 * @return {boolean|Function}           whether auto indent is enabled or the
 	 *                                      tabOverride function
 	 *
-	 * @name autoIndent
-	 * @function
-	 * @memberOf jQuery.fn.tabOverride
+	 * @method external:"jQuery.fn".tabOverride.autoIndent
 	 */
-	tabOverride.autoIndent = TABOVERRIDE.autoIndent;
+	$fnTabOverride.autoIndent = tabOverride.autoIndent;
 
 	/**
 	 * Gets or sets the tab key combination.
 	 *
-	 * @param  {Number}        keyCode             the key code of the key to use for tab
-	 * @param  {String[]}      [modifierKeyNames]  the modifier key names - valid names are
-	 *                                             'alt', 'ctrl', 'meta', and 'shift'
-	 * @return {String|Function}                   the current tab key combination or the
-	 *                                             tabOverride function
+	 * @param  {number}          keyCode             the key code of the key to use for tab
+	 * @param  {string[]}        [modifierKeyNames]  the modifier key names - valid names are
+	 *                                               'alt', 'ctrl', 'meta', and 'shift'
+	 * @return {string|Function}                     the current tab key combination or the
+	 *                                               tabOverride function
 	 *
-	 * @name tabKey
-	 * @function
-	 * @memberOf jQuery.fn.tabOverride
+	 * @method external:"jQuery.fn".tabOverride.tabKey
 	 */
-	tabOverride.tabKey = TABOVERRIDE.tabKey;
+	$fnTabOverride.tabKey = tabOverride.tabKey;
 
 	/**
 	 * Gets or sets the untab key combination.
 	 *
-	 * @param  {Number}        keyCode             the key code of the key to use for untab
-	 * @param  {String[]}      [modifierKeyNames]  the modifier key names - valid names are
-	 *                                             'alt', 'ctrl', 'meta', and 'shift'
-	 * @return {String|Function}                   the current untab key combination or the
-	 *                                             tabOverride function
+	 * @param  {number}          keyCode             the key code of the key to use for untab
+	 * @param  {string[]}        [modifierKeyNames]  the modifier key names - valid names are
+	 *                                               'alt', 'ctrl', 'meta', and 'shift'
+	 * @return {string|Function}                     the current untab key combination or the
+	 *                                               tabOverride function
 	 *
-	 * @name untabKey
-	 * @function
-	 * @memberOf jQuery.fn.tabOverride
+	 * @method external:"jQuery.fn".tabOverride.untabKey
 	 */
-	tabOverride.untabKey = TABOVERRIDE.untabKey;
+	$fnTabOverride.untabKey = tabOverride.untabKey;
 }));
 </code></pre>
         </article>
@@ -173,15 +230,16 @@ Copyright (c) 2013 Bill Bryant | http://opensource.org/licenses/mit */
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Namespaces</h3><ul><li><a href="jQuery.html">jQuery</a></li><li><a href="jQuery.fn.html">fn</a></li><li><a href="jQuery.fn.tabOverride.html">tabOverride</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Externals</h3><ul><li><a href="_.html">jQuery.fn</a></li></ul><h3>Namespaces</h3><ul><li><a href="tabOverride.html">tabOverride</a></li><li><a href="tabOverride.utils.html">utils</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.1.1</a> on Tue Mar 12 2013 13:47:56 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0</a> on Tue Aug 27 2013 13:47:55 GMT-0400 (EDT)
 </footer>
 
 <script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
 </body>
 </html>
