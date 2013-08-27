@@ -30,7 +30,7 @@
 	 * Helper function to remove the delegated listeners. This is only used in
 	 * the removeDelegatedListeners and addDelegatedListeners functions.
 	 *
-	 * @see external:"jQuery.fn".tabOverride.removeDelegatedListeners
+	 * @see external:"jQuery.fn".tabOverride.utils.removeDelegatedListeners
 	 * @private
 	 */
 	function removeDelegatedListenersHelper( $container, selector ) {
@@ -41,8 +41,16 @@
 	}
 
 	/**
-	 * @see external:"jQuery.fn".tabOverride.removeDelegatedListeners
-	 * @private
+	 * Removes the Tab Override event listeners on the container element
+	 * using jQuery delegated events.
+	 *
+	 * Hooks: removeDelegatedListeners - passed the jQuery object for the
+	 * container element(s) and the selector string
+	 *
+	 * @param {Object} $container  the jQuery object for the container element
+	 * @param {string} selector    the selector string to use for the delegated events
+	 *
+	 * @method external:"jQuery.fn".tabOverride.utils.removeDelegatedListeners
 	 */
 	function removeDelegatedListeners( $container, selector ) {
 		tabOverride.utils.executeExtensions( "removeDelegatedListeners", [ $container, selector ] );
@@ -50,8 +58,16 @@
 	}
 
 	/**
-	 * @see external:"jQuery.fn".tabOverride.addDelegatedListeners
-	 * @private
+	 * Adds the Tab Override event listeners to the container element using
+	 * jQuery delegated events.
+	 *
+	 * Hooks: addDelegatedListeners - passed the jQuery object for the
+	 * container element(s) and the selector string
+	 *
+	 * @param {Object} $container  the jQuery object for the container element
+	 * @param {string} selector    the selector string to use for the delegated events
+	 *
+	 * @method external:"jQuery.fn".tabOverride.utils.addDelegatedListeners
 	 */
 	function addDelegatedListeners( $container, selector ) {
 		tabOverride.utils.executeExtensions( "addDelegatedListeners", [ $container, selector ] );
@@ -115,34 +131,7 @@
 	 * @namespace external:"jQuery.fn".tabOverride.utils
 	 */
 	$fnTabOverride.utils = {
-		/**
-		 * Adds the Tab Override event listeners to the container element using
-		 * jQuery delegated events.
-		 *
-		 * Hooks: addDelegatedListeners - passed the jQuery object for the
-		 * container element(s) and the selector string
-		 *
-		 * @param {Object} $container  the jQuery object for the container element
-		 * @param {string} selector    the selector string to use for the delegated events
-		 *
-		 * @method
-		 * @memberOf external:"jQuery.fn".tabOverride.utils
-		 */
 		addDelegatedListeners: addDelegatedListeners,
-
-		/**
-		 * Removes the Tab Override event listeners on the container element
-		 * using jQuery delegated events.
-		 *
-		 * Hooks: removeDelegatedListeners - passed the jQuery object for the
-		 * container element(s) and the selector string
-		 *
-		 * @param {Object} $container  the jQuery object for the container element
-		 * @param {string} selector    the selector string to use for the delegated events
-		 *
-		 * @method
-		 * @memberOf external:"jQuery.fn".tabOverride.utils
-		 */
 		removeDelegatedListeners: removeDelegatedListeners
 	};
 
@@ -153,8 +142,7 @@
 	 * @param  {number}          [size]  the tab size
 	 * @return {number|Function}         the tab size or the tabOverride function
 	 *
-	 * @method tabSize
-	 * @memberOf external:"jQuery.fn".tabOverride
+	 * @method external:"jQuery.fn".tabOverride.tabSize
 	 */
 	$fnTabOverride.tabSize = tabOverride.tabSize;
 
@@ -166,8 +154,7 @@
 	 * @return {boolean|Function}           whether auto indent is enabled or the
 	 *                                      tabOverride function
 	 *
-	 * @method autoIndent
-	 * @memberOf external:"jQuery.fn".tabOverride
+	 * @method external:"jQuery.fn".tabOverride.autoIndent
 	 */
 	$fnTabOverride.autoIndent = tabOverride.autoIndent;
 
@@ -180,8 +167,7 @@
 	 * @return {string|Function}                     the current tab key combination or the
 	 *                                               tabOverride function
 	 *
-	 * @method tabKey
-	 * @memberOf external:"jQuery.fn".tabOverride
+	 * @method external:"jQuery.fn".tabOverride.tabKey
 	 */
 	$fnTabOverride.tabKey = tabOverride.tabKey;
 
@@ -194,8 +180,7 @@
 	 * @return {string|Function}                     the current untab key combination or the
 	 *                                               tabOverride function
 	 *
-	 * @method untabKey
-	 * @memberOf external:"jQuery.fn".tabOverride
+	 * @method external:"jQuery.fn".tabOverride.untabKey
 	 */
 	$fnTabOverride.untabKey = tabOverride.untabKey;
 }));
