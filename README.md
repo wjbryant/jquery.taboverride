@@ -3,7 +3,7 @@
 This plugin makes it easy to use [Tab Override](https://github.com/wjbryant/taboverride)
 with jQuery by providing a wrapper for the Tab Override API. In addition, it
 adds support for delegated events. Code documentation is available at
-[wjbryant.github.io/jquery.taboverride/docs/](http://wjbryant.github.io/jquery.taboverride/docs/jQuery.fn.tabOverride.html "Tab Override jQuery Plugin Code Documentation").
+[wjbryant.github.io/jquery.taboverride/docs/](http://wjbryant.github.io/jquery.taboverride/docs/_.html "Tab Override jQuery Plugin Code Documentation").
 
 ## Dependencies
 
