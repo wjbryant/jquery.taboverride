@@ -5,7 +5,16 @@ with jQuery by providing a wrapper for the Tab Override API. In addition, it
 adds support for delegated events. Code documentation is available at
 [wjbryant.github.io/jquery.taboverride/docs/](http://wjbryant.github.io/jquery.taboverride/docs/_.html "Tab Override jQuery Plugin Code Documentation").
 
-## Dependencies
+## Setup
+
+Download the latest release from the [releases page](https://github.com/wjbryant/jquery.taboverride/releases).
+Load either `jquery.taboverride.js` or `jquery.taboverride.min.js` in your
+project. These files can be found in the `build` directory.
+
+This project is also hosted on the jsDelivr CDN. See http://www.jsdelivr.com/#!jquery.taboverride
+for more information.
+
+### Dependencies
 
 The latest version of the plugin requires:
 
