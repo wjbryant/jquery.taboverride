@@ -5,7 +5,7 @@
         "name": "Bill Bryant",
         "url": "http://wjbryant.com/"
     },
-    "licenses": "MIT",
+    "license": "MIT",
     "dependencies": {
         "jquery": ">=1.7.0 <2.0.0",
         "taboverride": ">=4.0.0 <5.0.0"
