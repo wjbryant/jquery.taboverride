@@ -11,7 +11,7 @@
         "taboverride": ">=4.0.0 <5.0.0"
     },
     "description": "Allows tabs to be entered in textarea elements. This plugin is a wrapper for the Tab Override library API.",
-    "main": "jquery.taboverride.min.js",
+    "main": "build/jquery.taboverride.min.js",
     "keywords": [
         "indent",
         "insert",
